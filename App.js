@@ -1,12 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import CreateNewEventPage from './CreateNewEventPage';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import HomePage from './HomePage';
+import MyEventsPage from './MyEventsPage';
+
 
 export default function App() {
+  
+  const Stack = createNativeStackNavigator();
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="HomePage">
+          <Stack.Screen name="Home Page" component={HomePage} />
+          <Stack.Screen name="Your Events" component={MyEventsPage} />
+            <Stack.Screen name="Add new event" component={CreateNewEventPage} />
+          </Stack.Navigator>
+        </NavigationContainer>
   );
 }
 
